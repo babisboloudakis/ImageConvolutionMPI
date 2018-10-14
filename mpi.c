@@ -70,7 +70,7 @@ int main(int argc, char* argv[] ) {
     enum mode color = GRAY;
    
     // initialize filters here
-    double filter[9] = {1/16.0, 2/16.0, 1/16.0, 2/16.0, 4/16.0, 2/16.0, 1/16.0, 2/16.0, 1/16.0};    
+    double filter[9] = {0,0,0,0,1,0,0,0,0};    
     //get arguments
     //execute form : mpi width height filename repeats mode
     if (argc != 6){
@@ -180,7 +180,6 @@ int main(int argc, char* argv[] ) {
     if ( (myRank + root < processes) && (((myRank + root) % root) != 0)){
         SW = myRank + root - 1;
     }
-    // printf("MyRank %d, N %d, S %d, E %d, W %d, NE %d, NW %d, SE %d, SW %d\n", myRank, N, S, E, W, NE, NW, SE, SW);
     // Create a array for the image section
     unsigned char * grid, * grid2;
     if (color == GRAY){
@@ -241,7 +240,6 @@ int main(int argc, char* argv[] ) {
     int y = height/root;
     MPI_Barrier(MPI_COMM_WORLD);
     double timer = MPI_Wtime();
- 
    
     for ( int rep = 0; rep < repeats; rep++ ) {
  
@@ -399,7 +397,6 @@ int main(int argc, char* argv[] ) {
         }
     }
     MPI_File_close(&fp);
- 
  
     //free
     free(fileName);

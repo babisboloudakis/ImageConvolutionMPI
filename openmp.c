@@ -182,7 +182,6 @@ int main(int argc, char* argv[] ) {
     if ( (myRank + root < processes) && (((myRank + root) % root) != 0)){
         SW = myRank + root - 1;
     }
-    // printf("MyRank %d, N %d, S %d, E %d, W %d, NE %d, NW %d, SE %d, SW %d\n", myRank, N, S, E, W, NE, NW, SE, SW);
     // Create a array for the image section
     unsigned char * grid, * grid2;
     if (color == GRAY){
@@ -315,8 +314,6 @@ int main(int argc, char* argv[] ) {
         }
  
        
- 
- 
         // Convolute the inner image rectangle that isn't related
         // to the other processes data
         convolution(grid,grid2,filter,x+2,2,x-1,2,y-1,color);    
